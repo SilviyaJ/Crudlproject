@@ -27,6 +27,13 @@ public class Laptop {
 		return "Laptop [lapID=" + lapID + ", model=" + model + ", brand=" + brand + ", cost=" + cost + ", size=" + size
 				+ "]";
 	}
+	
+	
+	public Laptop() {
+		
+	}
+
+
 	public Laptop(int lapID, String model, String brand, int cost, double size) {
 		super();
 		this.lapID = lapID;
