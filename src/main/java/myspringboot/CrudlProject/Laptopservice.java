@@ -12,6 +12,10 @@ public class Laptopservice {
 	@Autowired
 	LaptopRepo obj;
 	
+	public void makeUpdate(String wet) {
+		obj.updatePriceByBrand(wet);
+	}
+	
 	public String makeDelete(Laptop lapto) {
 		String msg=lapto.getBrand()+"has deleted";
 		obj.delete(lapto);

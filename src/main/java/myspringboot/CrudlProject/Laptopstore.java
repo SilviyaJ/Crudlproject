@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,16 @@ public class Laptopstore {
  
 	@Autowired
 	Laptopservice service;
+	
+	@PutMapping("/up/{send}")
+	public void callingUpdateByPrice(@PathVariable("send") String send) {
+		service.makeUpdate(send);
+	}
+	
+	@PutMapping("/up")
+	public Laptop callingUpdate (@RequestBody Laptop lapt) {
+		 return service.makenew(lapt);
+	}
 	
 	@DeleteMapping("/del")
 	public String callingDelete(@RequestBody Laptop lp){
