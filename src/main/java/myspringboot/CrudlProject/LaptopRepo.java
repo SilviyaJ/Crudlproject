@@ -17,6 +17,14 @@ public interface LaptopRepo extends CrudRepository<Laptop, Integer>{
         
         @Transactional
         @Modifying
+        @Query ("delete from Laptop where model like %:own%")
+        public void deleteAllByCustomise(String own);
+        
+        @Query("select brand from Laptop where model like %:tp%")
+        public List<String> findAllByTypesLikes(String tp);
+        
+        @Transactional
+        @Modifying
         @Query ("update Laptop set cost=cost*0.500 where brand=:bnnd")
         public void updatePriceByBrand (String bnnd);
         

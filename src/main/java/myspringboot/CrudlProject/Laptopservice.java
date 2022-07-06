@@ -12,6 +12,19 @@ public class Laptopservice {
 	@Autowired
 	LaptopRepo obj;
 	
+	public List<String> makeDeleteCustom (String tp){
+		List<String> tmp=obj.findAllByTypesLikes(tp);
+		obj.deleteAllByCustomise(tp);
+		return tmp;
+	}
+	
+	public String makeDeleteKey(int key) {
+		Laptop l=obj.findById(key).orElse(null);
+		String msg=l.getBrand()+"has deleted";
+		obj.deleteById(key);
+		return msg;
+	}
+	
 	public void makeUpdate(String wet) {
 		obj.updatePriceByBrand(wet);
 	}

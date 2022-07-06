@@ -18,6 +18,16 @@ public class Laptopstore {
 	@Autowired
 	Laptopservice service;
 	
+	@DeleteMapping("/delall/{tp}")
+	public List<String> callingDeleteMany(@PathVariable("tp") String tp){
+		return service.makeDeleteCustom(tp);
+	}
+	
+	@DeleteMapping("/delid/{ind}")
+	public String callingDeleteById(@PathVariable("ind") int ind) {
+		return service.makeDeleteKey(ind);
+	}
+	
 	@PutMapping("/up/{send}")
 	public void callingUpdateByPrice(@PathVariable("send") String send) {
 		service.makeUpdate(send);
