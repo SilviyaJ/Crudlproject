@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,21 @@ public class Laptopstore {
  
 	@Autowired
 	Laptopservice service;
+	
+    @Autowired
+    PasswordEncoder encoder;
+	
+	@Autowired
+	ResourceService serv;
+	
+	@PostMapping("/signup")
+	public Resource signingUp(@RequestBody Resource resource) {
+		
+		String newone=encoder.encode(resource.getPassword());
+		resource.setPassword(newone);
+		return serv.implementSave(resource);
+		
+	}
 	
 	@DeleteMapping("/delall/{tp}")
 	public List<String> callingDeleteMany(@PathVariable("tp") String tp){
